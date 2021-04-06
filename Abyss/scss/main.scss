@@ -1,0 +1,71 @@
+@import "extend";
+
+/*
+  Contains styles for form.
+*/
+.abyss-form {
+  margin-bottom: 35px;
+}
+
+/*
+  Contains styles for the administrator.
+*/
+.admin-guest {
+  position: relative;
+  /*
+    Style for hover administration button.
+  */
+  .contextual {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    .abyss-hidden {
+      display: none;
+    }
+    .abyss-admin-list {
+      display: none;
+      list-style: none;
+      align-items: start;
+      flex-direction: column;
+    }
+    .abyss-active {
+      display: flex;
+      padding: 8px 0 0 8px;
+      margin-right: 6px;
+      margin-top: -1px;
+      width: 70px;
+      height: 60px;
+      border: 1px solid #ccc;
+      border-radius: 4px 0 4px 4px;
+    }
+    .abyss-button-active {
+      border-radius: 13px 13px 0 0;
+      border-bottom: none;
+    }
+  }
+  &:hover {
+    outline: 1px dashed #d6d6d6;
+    outline-offset: 1px;
+  }
+  &:hover .abyss-hidden {
+    display: block;
+  }
+  @extend %content;
+}
+
+/*
+  Contains styles for the user.
+*/
+.guest {
+  @extend %content;
+}
+
+/*
+  Contains styles for delete form.
+*/
+.abyss-delete {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100px;
+}

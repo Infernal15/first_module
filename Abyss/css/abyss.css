@@ -1,0 +1,98 @@
+.guest, .admin-guest {
+  margin: 15px;
+}
+.guest .guest-user-data, .admin-guest .guest-user-data {
+  display: flex;
+}
+.guest .guest-user-data .guest-user-data-text, .admin-guest .guest-user-data .guest-user-data-text {
+  display: flex;
+  flex-direction: column;
+}
+.guest .guest-user-data img, .admin-guest .guest-user-data img {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  margin-right: 10px;
+}
+.guest .guest-user-response, .admin-guest .guest-user-response {
+  display: flex;
+  margin: 10px 0 10px;
+}
+.guest .guest-user-response img, .admin-guest .guest-user-response img {
+  width: 150px;
+  height: 150px;
+  margin-right: 20px;
+}
+.guest .guest-user-information, .admin-guest .guest-user-information {
+  display: flex;
+}
+.guest .guest-user-information p:first-child, .admin-guest .guest-user-information p:first-child {
+  margin-right: 20px;
+}
+
+/*
+  Contains styles for form.
+*/
+.abyss-form {
+  margin-bottom: 35px;
+}
+
+/*
+  Contains styles for the administrator.
+*/
+.admin-guest {
+  position: relative;
+  /*
+    Style for hover administration button.
+  */
+}
+.admin-guest .contextual {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.admin-guest .contextual .abyss-hidden {
+  display: none;
+}
+.admin-guest .contextual .abyss-admin-list {
+  display: none;
+  list-style: none;
+  align-items: start;
+  flex-direction: column;
+}
+.admin-guest .contextual .abyss-active {
+  display: flex;
+  padding: 8px 0 0 8px;
+  margin-right: 6px;
+  margin-top: -1px;
+  width: 70px;
+  height: 60px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 4px 4px;
+}
+.admin-guest .contextual .abyss-button-active {
+  border-radius: 13px 13px 0 0;
+  border-bottom: none;
+}
+.admin-guest:hover {
+  outline: 1px dashed #d6d6d6;
+  outline-offset: 1px;
+}
+.admin-guest:hover .abyss-hidden {
+  display: block;
+}
+
+/*
+  Contains styles for the user.
+*/
+/*
+  Contains styles for delete form.
+*/
+.abyss-delete {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 100px;
+}
+
+/*# sourceMappingURL=abyss.css.map */

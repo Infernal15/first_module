@@ -1,0 +1,26 @@
+# The way to display the form for filling in and editing data.
+Abyss.form:
+  path: '/abyss/form/{id}'
+  defaults:
+    _form: '\Drupal\Abyss\Form\AbyssEditModalForm'
+    _title: 'Edit form'
+  requirements:
+    _permission: 'access content'
+
+# The path to the page controller, which generates all the information for output.
+Abyss.page:
+  path: 'abyss'
+  defaults:
+    _controller:  '\Drupal\Abyss\Controller\PageController::page'
+    _title: 'Form API Examples'
+  requirements:
+    _permission: 'access content'
+
+# The path for the delete form.
+Abyss.page_delete:
+  path: '/abyss/delete/{id}'
+  defaults:
+    _form: '\Drupal\Abyss\Form\AbyssDeleteConfirmation'
+    _title: 'Delete'
+  requirements:
+    _permission: 'access content'

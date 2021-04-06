@@ -1,0 +1,62 @@
+{# Abyss/templates/description.html.twig #}
+{#<p>#}
+{#  {{ dump(fields) }}#}
+{#{{ dump(user) }}#}
+{#</p>#}
+{{ attach_library('Abyss/form') }}
+
+<div class="abyss-form">
+  {{ form }}
+</div>
+<div class="guest-list">
+  {% for field in fields %}
+    {% if user.admin %}
+  <div class="admin-guest">
+    {% else %}
+  <div class="guest">
+    {% endif %}
+      {% if user.admin %}
+      <div class="contextual">
+        <button class="trigger focusable abyss-hidden" type="button" aria-pressed="false"></button>
+        <ul class="abyss-admin-list">
+          <li>
+            <a class="use-ajax button"
+               data-dialog-options="{&quot;width&quot;:400}"
+               data-dialog-type="modal"
+               href="/abyss/form/{{ field.id }}">
+              Edit
+            </a>
+          </li>
+          <li>
+            <a class="use-ajax button"
+               data-dialog-options="{&quot;width&quot;:400}"
+               data-dialog-type="modal"
+               href="/abyss/delete/{{ field.id }}">
+              Delete
+            </a>
+          </li>
+        </ul>
+      </div>
+      {% endif %}
+      <section class="content">
+        <div class="guest-user-data">
+          <img src="{{ field.avatar }}">
+          <div class="guest-user-data-text">
+            <p>{{ field.name }}</p>
+            <p>{{ field.data }}</p>
+          </div>
+        </div>
+        <div class="guest-user-response">
+          {% if field.response_image %}
+            <img src="{{ field.response_image }}">
+          {% endif %}
+          <p>{{ field.response }}</p>
+        </div>
+        <div class="guest-user-information">
+          <p class="phone">Phone: {{ field.phone }}</p>
+          <p class="email">Email: {{ field.email }}</p>
+        </div>
+      </section>
+    </div>
+  {% endfor %}
+</div>

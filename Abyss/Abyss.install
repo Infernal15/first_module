@@ -1,0 +1,115 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for File module.
+ */
+
+use Drupal\file\Entity\File;
+
+/**
+ * Implements hook_schema().
+ */
+function Abyss_schema(): array {
+  $schema['Abyss'] = [
+    'description' => 'Stores module form data.',
+    'fields' => [
+      'id' => [
+        'description' => 'The response id.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'name' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'email' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'phone' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+      ],
+      'response' => [
+        'type' => 'text',
+        'size' => 'big',
+        'not null' => TRUE,
+      ],
+      'avatar' => [
+        'type' => 'text',
+        'size' => 'normal',
+        'not null' => FALSE,
+      ],
+      'response_image' => [
+        'type' => 'text',
+        'size' => 'normal',
+        'not null' => FALSE,
+      ],
+      'data' => [
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+    ],
+    'primary key' => [
+      'id',
+    ],
+  ];
+
+  return $schema;
+}
+
+/**
+ * Implementation of hook_install().
+ */
+function social_site_install() {
+  // Use schema API to create database table.
+  drupal_install_schema('Abyss');
+}
+
+/**
+ * Implementation of hook_uninstall().
+ */
+function Abyss_uninstall() {
+  $query = \Drupal::database()->select('file_managed', 'fm');
+  $query->fields('fm', [
+    'fid',
+  ]);
+  $query->condition('uri', 'public://abyss%', 'LIKE');
+  $elements = $query->execute()->fetchAll();
+  foreach ($elements as &$element) {
+    $file = File::load($element->fid);
+    if (!empty($file)) {
+      try {
+        $file->setTemporary();
+        $file->save();
+        $file->delete();
+      }
+      catch (\Exception $e) {
+        echo $e;
+      }
+      unset($file);
+    }
+  }
+
+  rmdir_recursive('public://abyss');
+  \Drupal::database()->schema()->dropTable('Abyss');
+}
+
+/**
+ * Recursive deletion of module-dependent files and folders.
+*/
+function rmdir_recursive($dir) {
+  $it = new RecursiveDirectoryIterator($dir, FilesystemIterator::SKIP_DOTS);
+  $it = new RecursiveIteratorIterator($it, RecursiveIteratorIterator::CHILD_FIRST);
+  foreach($it as $file) {
+    if ($file->isDir()) rmdir($file->getPathname());
+    else unlink($file->getPathname());
+  }
+  rmdir($dir);
+}

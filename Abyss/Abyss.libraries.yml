@@ -1,0 +1,10 @@
+form:
+  version: "0.0.1"
+  css:
+    theme:
+      css/abyss.css: {}
+  js:
+    js/my-lib.js: {}
+  dependencies:
+    - core/drupal.dialog.ajax
+    - core/jquery.form

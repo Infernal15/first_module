@@ -1,0 +1,31 @@
+%content {
+  margin: 15px;
+  .guest-user-data {
+    display: flex;
+    .guest-user-data-text {
+      display: flex;
+      flex-direction: column;
+    }
+    img {
+      display: inline-block;
+      width: 100px;
+      height: 100px;
+      margin-right: 10px;
+    }
+  }
+  .guest-user-response {
+    display: flex;
+    margin: 10px 0 10px;
+    img {
+      width: 150px;
+      height: 150px;
+      margin-right: 20px;
+    }
+  }
+  .guest-user-information {
+    display: flex;
+    p:first-child {
+      margin-right: 20px;
+    }
+  }
+}
